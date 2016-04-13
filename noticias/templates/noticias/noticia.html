@@ -1,22 +1,32 @@
 {%extends 'base.html' %}
 {%block content%}
-        <h3>Noticias</h3>
-        <a href="{% url 'noticias:nueva_noticia'%}"> Nueva Noticia</a>
-            {% if noticias %}
-                {% for noticia in noticias %}
-                    <div class="col-sm-5 col-md-3">
-                        <img class="img-thumbnail" src="{{noticia.imagenes.url}}"/>
-                        <h3 class="bg-primary">{{ noticia.subtitulo}}</h3>
-                        <p> {{ noticia.descripcion }}</p>
-                        <div>
-                            <a class="btn btn-success" role="button" href="{% url 'noticias:editar_noticia' noticia.id %}">Editar</a>
-                            <a class="btn btn-danger" role="button" href="{% url 'noticias:eliminar_noticia' noticia.id %}">Eliminar</a>
-                        </div>
-                    </div>
+    <div class="row1">
+     <h3>Noticias</h3>
+    <a href="{% url 'noticias:nueva_noticia'%}"> Nueva Noticia</a>
+    </div>
+
+    {% if noticias %}
+        <div class="row">
+        {% for noticia in noticias %}
+
+            <div class="col-sm-5 col-md-3">
+                {% for url_img in noticia.imagenes_set.all %}
+                    {{ url_img }}
+                    {#                            <img class="img-thumbnail" src="{{url_img.url}}"/>#}
+                {% endfor %}
+
+                <h2 class="bg-primary">{{ noticia.titulo}}</h2>
+                <h4 >{{ noticia.subtitulo}}</h4>
+                <p> {{ noticia.descripcion }}</p>
+                <div>
+                    <a class="btn btn-success" role="button" href="{% url 'noticias:editar_noticia' noticia.id %}">Editar</a>
+                    <a class="btn btn-danger" role="button" href="{% url 'noticias:eliminar_noticia' noticia.id %}">Eliminar</a>
                 </div>
             </div>
-                {% endfor %}
-            {% else %}
-                <p>No hay Noticias </p>
-            {% endif %}
+
+        {% endfor %}
+        </div>
+    {% else %}
+        <p>No hay Noticias </p>
+    {% endif %}
 {%endblock%}
