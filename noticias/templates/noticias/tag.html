@@ -1,0 +1,28 @@
+{%extends 'base.html' %}
+{%block content%}
+        <h3>Tags</h3>
+        <a href="{% url 'noticias:nuevo_tag'%}"> Nuevo Tag</a>
+            {% if tags %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tag in tags %}
+                        <tr>
+                            <td> {{ tag.id }}</td>
+                            <td> {{ tag.nombre_tag}}</td>
+                            <td><a class="btn btn-success" role="button" href="{% url 'noticias:editar_tag' tag.id %}">Editar</a> <a class="btn btn-danger" role="button" href="{% url 'noticias:eliminar_tag' tag.id %}">Eliminar</a> </td>
+                        </tr>
+                            {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No hay Tags </p>
+            {% endif %}
+            
+{%endblock%}

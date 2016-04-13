@@ -1,0 +1,27 @@
+{%extends 'base.html' %}
+{%block content%}
+        <h3>Imagenes</h3>
+        <a href="{% url 'noticias:nueva_imagen'%}"> Nueva Imagen</a>
+            {% if imagenes %}
+        <div class="row">
+            {% for imagen in imagenes %}
+            <div class="col-sm-5 col-md-3">
+                <div class="thumbnail img-thumbnail">
+
+                    <img class="img-thumbnail" src="{{imagen.imagen.url}}"/>
+                    <div class="caption text-center">
+                        <h3 class="bg-primary">{{ imagen.titulo }}</h3>
+                        <div>
+                            <a class="btn btn-success" role="button" href="{% url 'noticias:editar_imagen' imagen.id %}">Editar</a>
+                            <a class="btn btn-danger" role="button" href="{% url 'noticias:eliminar_imagen' imagen.id %}">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% else %}
+    <p>No hay Imagenes </p>
+    {% endif %}
+            
+{%endblock%}
