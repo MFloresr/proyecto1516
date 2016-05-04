@@ -1,32 +1,141 @@
 {%extends 'base.html' %}
 {%block content%}
-    <div class="row1">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">
+            <h4>Noticias</h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-2">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li class="disabled"><a href="#">Disabled</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Dropdown <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Action 2</a></li>
+                        <li><a href="#">Action 3</a></li>
+                        <li><a href="#">Action 4</a></li>
+                        <li><a href="#">Action 5</a></li>
+                        <li><a href="#">Action 6</a></li>
+                        <li><a href="#">Action 7</a></li>
+                        <li><a href="#">Action 8</a></li>
+                        <li><a href="#">Action 9</a></li>
+                        <li><a href="#">Action 10</a></li>
+                        <li><a href="#">Action 11</a></li>
+                        <li><a href="#">Action 12</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-10">
+                    <div class="row">
+                    {% if noticias %}
+                        {% for noticia in noticias %}
+                            <div class="col-lg-3">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">{{ noticia.titulo }}</div>
+                                    <div class="panel-body">
+                                        <div id="chart1">
+                                            <p class="well">
+                                                {{ noticia.subtitulo }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        {% endfor %}
+                    {% else %}
+                        <p>No hay Noticias </p>
+                    {% endif %}
+
+
+
+
+
+
+                        <div class="col-lg-3">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Graph 2</div>
+                                <div class="panel-body">
+                                    <div id="chart2"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Graph 1</div>
+                                <div class="panel-body">
+                                    <div id="chart1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Graph 2</div>
+                                <div class="panel-body">
+                                    <div id="chart2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Graph 3</div>
+                                <div class="panel-body">
+                                    <div id="chart3" class=""></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row">
      <h3>Noticias</h3>
     <a href="{% url 'noticias:nueva_noticia'%}"> Nueva Noticia</a>
     </div>
 
-    {% if noticias %}
-        <div class="row">
-        {% for noticia in noticias %}
 
-            <div class="col-sm-5 col-md-3">
-                {% for url_img in noticia.imagenes_set.all %}
-                    {{ url_img }}
-                    {#                            <img class="img-thumbnail" src="{{url_img.url}}"/>#}
-                {% endfor %}
+     <script>
+    $(document).ready(function() {
+    var heights = $(".well").map(function() {
+        return $(this).height();
+    }).get(),
 
-                <h2 class="bg-primary">{{ noticia.titulo}}</h2>
-                <h4 >{{ noticia.subtitulo}}</h4>
-                <p> {{ noticia.descripcion }}</p>
-                <div>
-                    <a class="btn btn-success" role="button" href="{% url 'noticias:editar_noticia' noticia.id %}">Editar</a>
-                    <a class="btn btn-danger" role="button" href="{% url 'noticias:eliminar_noticia' noticia.id %}">Eliminar</a>
-                </div>
-            </div>
+        maxHeight = Math.max.apply(null, heights);
 
-        {% endfor %}
-        </div>
-    {% else %}
-        <p>No hay Noticias </p>
-    {% endif %}
+        $(".well").height(maxHeight);
+    });
+</script>
 {%endblock%}

@@ -20,7 +20,7 @@ def vernoticia(request, noticia_id):
 
 def intro_edit_noticia(request, noticia_id=None):
     es_modificacio =(noticia_id!=None)
-    noticiaForm =modelform_factory(Noticia,exclude=())
+    noticiaForm =modelform_factory(Noticia,exclude=('id',))
     if es_modificacio:
         noticia = get_object_or_404(Noticia, id=noticia_id)
     else:
@@ -43,9 +43,7 @@ def intro_edit_noticia(request, noticia_id=None):
         form = noticiaForm(instance=noticia)
 
     form.helper = FormHelper()
-    form.helper.form_class = 'form-horizontal'
-    form.helper.label_class = 'col-md-6 col-md-offset-3'
-    form.helper.field_class = 'col-md-9'
+    form.helper.form_class = 'form-horizontal col-md-8 col-md-offset-2'
     form.helper.add_input(Submit('submit', 'Enviar'))
     return render(request, 'formulario.html', {'form': form, 'noticia':noticia})
 
@@ -62,7 +60,7 @@ def vertags(request):
 
 def intro_edit_tag(request, tag_id=None):
     es_modificacio =(tag_id!=None)
-    tagForm =modelform_factory(Tag,exclude=())
+    tagForm =modelform_factory(Tag, exclude=('id',))
     if es_modificacio:
         tag = get_object_or_404(Tag, id=tag_id)
     else:
@@ -104,7 +102,7 @@ def verimagenes(request):
 
 def intro_edit_imagen(request, imagen_id=None):
     es_modificacio =(imagen_id!=None)
-    imagenForm =modelform_factory(Imagen,exclude=())
+    imagenForm =modelform_factory(Imagen,exclude=('id',))
     if es_modificacio:
         imagen = get_object_or_404(Imagen, id=imagen_id)
     else:
@@ -127,9 +125,7 @@ def intro_edit_imagen(request, imagen_id=None):
         form = imagenForm(instance=imagen)
 
     form.helper = FormHelper()
-    form.helper.form_class = 'form-horizontal'
-    form.helper.label_class = 'col-md-6 col-md-offset-3'
-    form.helper.field_class = 'col-md-9'
+    form.helper.form_class = 'form-horizontal col-md-8 col-md-offset-2'
     form.helper.add_input(Submit('submit', 'Enviar'))
     return render(request, 'formulario.html', {'form': form, 'imagen':imagen})
 
