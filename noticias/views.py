@@ -20,7 +20,7 @@ def vernoticia(request, noticia_id):
 
 def intro_edit_noticia(request, noticia_id=None):
     es_modificacio =(noticia_id!=None)
-    noticiaForm =modelform_factory(Noticia,exclude=('id',))
+    noticiaForm =modelform_factory(Noticia,exclude=('id','usuario',))
     if es_modificacio:
         noticia = get_object_or_404(Noticia, id=noticia_id)
     else:
@@ -28,6 +28,7 @@ def intro_edit_noticia(request, noticia_id=None):
     if request.method == 'POST':
         form = noticiaForm(request.POST,request.FILES,instance=noticia)
         if form.is_valid():
+            form.instance.usuario = request.user
             noticia = form.save()
             if(es_modificacio):
                 messages.add_message(request, messages.SUCCESS, 'Modificado correctamente')

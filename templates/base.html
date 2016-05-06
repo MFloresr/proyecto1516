@@ -1,11 +1,13 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>{{titol|default:"Noticias"}}</title>
-    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-    <link rel="stylesheet" href="https://bootswatch.com/united/bootstrap.min.css" crossorigin="anonymous">
-    <script src="https://bootswatch.com/assets/css/custom.min.css"></script>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    {% block header %}
+
+    {%endblock%}
     <script>
         $(document).ready(function() {
             var time = setTimeout(eliminarAlertes, 5000);
@@ -20,10 +22,10 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav id="header" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2 #navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -32,16 +34,16 @@
             <a class="navbar-brand" href="#">{{request.user}}</a>
         </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2 navbar">
             <ul class="nav navbar-nav">
                 {#            {% if user.is_authenticated %}#}
                 <li class="active"><a href="{% url 'noticias:ver_noticias' %}"> Noticias <span class="sr-only">(current)</span></a></li>
-                <li><a href="{% url 'noticias:ver_tags' %}"> Tags </a></li>
+                <li role="presentation"><a href="{% url 'noticias:ver_tags' %}"> Tags </a></li>
                 <li><a href="{% url 'noticias:ver_imagenes' %}"> Imagenes </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'sortir' %}">Opciones</a></li>
+                    <li><a href="{% url 'noticias:ver_tags' %}">Opciones</a></li>
                     <li><a href="{% url 'sortir' %}">Sortir</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">Connectar-se</a></li>
@@ -69,8 +71,8 @@
         {%endblock%}
     </div>
 </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/jquery-1.11.3.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 {%block scripts %}
 
 {%endblock%}
