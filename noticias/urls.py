@@ -6,7 +6,7 @@ urlpatterns = [
     # ex: /noticias/
     url(r'^$', views.vernoticias, name='ver_noticias'),
      # ex: /noticias/5/
-    url(r'^(?P<noticia_id>[0-9]+)/$', views.vernoticia, name='ver_notica'),
+    url(r'^(?P<noticia_id>[0-9]+)/$', views.vernoticia, name='ver_noticia'),
     url(r'^introduirnoticia/$', views.intro_edit_noticia, name='nueva_noticia'),
     url(r'^editarnoticia/(?P<noticia_id>[0-9]+)/$', views.intro_edit_noticia, name='editar_noticia'),
     url(r'^eliminarnoticia/(?P<noticia_id>[0-9]+)/$', views.eliminarnoticia, name='eliminar_noticia'),

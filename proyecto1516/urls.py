@@ -10,9 +10,11 @@ from django.conf.urls.static import static
 urlpatterns = ([
     url(r'^admin/', admin.site.urls),
     url(r'^noticias/', include('noticias.urls', namespace='noticias')),
-    url(r'^login/', vista_usuarios.vista_login, name="login"  ),
-    url(r'^registrar/', vista_usuarios.registrar, name="registrar"  ),
+    url('', include('social.apps.django_app.urls', namespace='social')),
+    url(r'^login/', vista_usuarios.vista_login, name="login"),
+    url(r'^registrar/', vista_usuarios.registrar, name="registrar"),
     url(r'^sortir/', vista_usuarios.logout_view, name="sortir"  ),
+
 ]
 
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -16,7 +16,8 @@ def vernoticias(request):
 
 def vernoticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, pk=noticia_id)
-    return HttpResponseRedirect(reverse('noticias:ver_noticia' ),request,{'noticia':noticia})
+    return render(request, 'noticias/detalle.html', {'noticia':noticia})
+
 
 def intro_edit_noticia(request, noticia_id=None):
     es_modificacio =(noticia_id!=None)
@@ -45,6 +46,8 @@ def intro_edit_noticia(request, noticia_id=None):
 
     form.helper = FormHelper()
     form.helper.form_class = 'form-horizontal col-md-8 col-md-offset-2'
+    form.helper.label_class = 'col-lg-3'
+    form.helper.field_class = 'col-lg-8 col-md-8'
     form.helper.add_input(Submit('submit', 'Enviar'))
     return render(request, 'formulario.html', {'form': form, 'noticia':noticia})
 
@@ -84,9 +87,9 @@ def intro_edit_tag(request, tag_id=None):
         form = tagForm(instance=tag)
 
     form.helper = FormHelper()
-    form.helper.form_class = 'form-horizontal'
-    form.helper.label_class = 'col-md-6 col-md-offset-3'
-    form.helper.field_class = 'col-md-9'
+    form.helper.form_class = 'form-horizontal col-md-6 col-md-offset-3'
+    form.helper.label_class = 'col-lg-3'
+    form.helper.field_class = 'col-lg-8 col-md-8'
     form.helper.add_input(Submit('submit', 'Enviar'))
     return render(request, 'formulario.html', {'form': form, 'tag':tag})
 
@@ -103,7 +106,7 @@ def verimagenes(request):
 
 def intro_edit_imagen(request, imagen_id=None):
     es_modificacio =(imagen_id!=None)
-    imagenForm =modelform_factory(Imagen,exclude=('id',))
+    imagenForm =modelform_factory(Imagen,exclude=('id','imagen2',))
     if es_modificacio:
         imagen = get_object_or_404(Imagen, id=imagen_id)
     else:
@@ -126,7 +129,9 @@ def intro_edit_imagen(request, imagen_id=None):
         form = imagenForm(instance=imagen)
 
     form.helper = FormHelper()
-    form.helper.form_class = 'form-horizontal col-md-8 col-md-offset-2'
+    form.helper.form_class = 'form-horizontal col-md-6 col-md-offset-3'
+    form.helper.label_class = 'col-lg-3'
+    form.helper.field_class = 'col-lg-8 col-md-8'
     form.helper.add_input(Submit('submit', 'Enviar'))
     return render(request, 'formulario.html', {'form': form, 'imagen':imagen})
 

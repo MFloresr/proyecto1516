@@ -4,56 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <title>{{titol|default:"Noticias"}}</title>
+
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'css/menu-theme.css' %}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     {% block header %}
 
     {%endblock%}
-    <script>
-        $(document).ready(function() {
-            var time = setTimeout(eliminarAlertes, 5000);
-            function eliminarAlertes() {
-                var alertes = $(".alertes").slideUp();
-            }
-            $(".navbar-nav").children().on("click", function(){
-                $(this).addClass("active");
-            })
-        });
-    </script>
 </head>
 
 <body>
-    <nav id="header" class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
+
+
+<!-- Fixed navbar -->
+<nav id="header" class="navbar navbar-fixed-top">
+    <div id="header-container" class="container navbar-container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2 #navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">{{request.user}}</a>
+            <a id="brand" class="navbar-brand" href="#">{{request.user}}</a>
         </div>
-
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2 navbar">
             <ul class="nav navbar-nav">
                 {#            {% if user.is_authenticated %}#}
                 <li class="active"><a href="{% url 'noticias:ver_noticias' %}"> Noticias <span class="sr-only">(current)</span></a></li>
                 <li role="presentation"><a href="{% url 'noticias:ver_tags' %}"> Tags </a></li>
                 <li><a href="{% url 'noticias:ver_imagenes' %}"> Imagenes </a></li>
+                <li><a href="#"> Proyectos </a></li>
+                <li><a href="#"> Productos  </a></li>
+                <!--<li><a href="#"> Maquinaria </a></li>-->
+                <!--<li><a href="#"> Alquiler de maquinaria</a></li>
+                <li><a href="#"> Paginas Amigas</a></li>
+                <li><a href="#"> Quienes somos </a></li>-->
+                <li><a href="#"> Contactanos </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'noticias:ver_tags' %}">Opciones</a></li>
+                    <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Opciones <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Cambiar Contraseña</a></li>
+                            <li><a href="#">Mi Perfil</a></li>
+                        </ul>
+
                     <li><a href="{% url 'sortir' %}">Sortir</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}">Connectar-se</a></li>
                     <li><a href="{% url 'registrar' %}">Registrar-se</a></li>
                 {% endif %}
             </ul>
-        </div>
-    </div>
-</nav>
-    <div class="container" style="padding-top: 70px;">
+        </div><!-- /.nav-collapse -->
+    </div><!-- /.container -->
+</nav><!-- /.navbar -->
+
+<div class="container" style="padding-top: 70px;">
     {% if messages %}
         {% for message in messages %}
             <div class="alert alertes alert-{{ message.tags }} " role="alert">{{message}}</div>
@@ -71,12 +78,20 @@
         {%endblock%}
     </div>
 </div>
-    <script src="{% static 'js/jquery-1.11.3.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery-1.11.3.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/funciones.js' %}"></script>
+<script src="{% static 'js/menu-theme.js' %}"></script>
 {%block scripts %}
 
 {%endblock%}
-
+<footer>
+    <div class="container">
+        <div class="col-md-10 col-md-offset-1 text-center">
+            <h6>Coded with <i class="fa fa-heart red"></i> by <a href="http://www.nabeel.co.in" target="_blank">Mario Flores</a></h6>
+        </div>
+    </div>
+</footer>
 </body>
 
 </html>

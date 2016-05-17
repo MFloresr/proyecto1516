@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'noticias',
+    'social.apps.django_app.default',
     'crispy_forms',
     'usuarios',
 ]
@@ -68,6 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -132,6 +135,26 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+#add backend twitter face and google
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookAppOAuth2',
+    'social.backends.facebook.Facebook2OAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOUTH_MIGRATION_MODULES = {
+    'default': 'social.apps.django_app.default.south_migrations'
+}
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_TWITTER_KEY = '3tCT2XS5RRK40VBAGFa7y8EQj'
+SOCIAL_AUTH_TWITTER_SECRET = 'usdp4metJZT4hy5ZQ9IpfWgHSoui4XFFWtOJdaLNzLriFrhCLl'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '259837021031249'
+SOCIAL_AUTH_FACEBOOK_SECRET = '6cd59baf7efdf6908bc4648d6080c8c7'
 
 
 # Static files (CSS, JavaScript, Images)

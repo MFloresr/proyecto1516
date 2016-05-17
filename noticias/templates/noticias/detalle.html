@@ -1,0 +1,45 @@
+{%extends 'base.html' %}
+
+{%block content%}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-lg-12">
+                <div class="text-right row">
+                    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.6&appId=259837021031249";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+                </div>
+                <h6 class="description">Noticia </h6>
+                <div class="row pt-md">
+                    {% if noticia %}
+
+                        <p> {{ noticia.titulo }}</p>
+
+                        {% for imagen in noticia.imagenes.all %}
+                                        <img src="{{ imagen.imagen.url }}" class="img-responsive img-clip-not">
+                                    {% endfor %}
+
+                        <p> {{ noticia.subtitulo }}</p>
+                        <p> {{ noticia.entrada }}</p>
+                        <p> {{ noticia.cuerpo }}</p>
+                        <p> {{ noticia.usuario }}</p>
+                        <p> {{ noticia.fecha_publicacion }}</p>
+                        <p> {{ noticia.votos }}</p>
+                        <p> {{ noticia.tag }}</p>
+
+                        <h6 class="description">Comentarios</h6>
+
+                        <div class="fb-comments" data-href="http://www.mflores.bol:8000/noticias/1/" data-numposts="5"></div>
+                    {% else %}
+                        <p>No hay la noticia demandada  </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{%endblock%}

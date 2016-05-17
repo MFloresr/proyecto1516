@@ -4,5 +4,7 @@
 {%block content%}
     <div class="row">
         {% crispy form %}
+        <a href="{% url 'social:begin' 'twitter' %}"> Twitter Login</a>
+        <a href="{% url 'social:begin' 'facebook' %}"> Facebook Login</a>
     </div>
 {%endblock content%}
