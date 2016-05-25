@@ -21,8 +21,14 @@
                     {% if noticias %}
                         <div class="col-xs-12  col-sm-12 ">
 
-                                {% for noticia in noticias %}
-                                    <div class="col-lg-4 col-sm-4">
+                        <section>
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    {% for noticia in noticias %}
+                                        <p>aqui hay 9 espacios</p>
+                                    <div class="article-category">
+                                        <a href="#">{{ noticia.tag }}</a>
+                                    </div>
                                         <div class="row">
                                             <h4 class="text-justify"><b>{{ noticia.titulo }}</b></h4>
                                         </div>
@@ -34,6 +40,60 @@
                                     <a class="btn btn-success" role="button" href="{% url 'noticias:editar_noticia' noticia.id %}">Editar</a> <a class="btn btn-danger" role="button" href="{% url 'noticias:eliminar_noticia' noticia.id %}">Eliminar</a>
                                     </div>
                                 {% endfor %}
+
+                                <article class="article article-home">
+                  <div class="article-category">
+                    <a href="/categoria/redes-sociales-y-comunidades">Redes sociales y comunidades</a>
+              </div>
+              <h2 class="article-home-header"><a href="http://www.genbeta.com/redes-sociales-y-comunidades/confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres">Confirmado: Twitter excluirá imágenes y nombres de usuario de su límite de 140 caracteres</a></h2>
+              <div class="article-actions m-in-home">
+                    <div class="article-comments">
+                         <a href="http://www.genbeta.com/redes-sociales-y-comunidades/confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres#to-comments">Comentar</a>
+                   </div>
+             </div>
+             <div class="article-metadata m-in-home">
+               <div class="article-author m-in-home">
+                  <a class="article-author-link" href="/autor/agueda" rel="author">Águeda A.Llorca</a>
+            </div>
+            <div class="article-date m-in-home">
+                  <time title="2016-05-24T14:54:52Z" datetime="1464101692"></time>
+            </div>
+      </div>
+      <div class="article-home-figure">
+        <a href="http://www.genbeta.com/redes-sociales-y-comunidades/confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres">
+             <img src ="http://i.blogs.es/30332a/asdf/400_300.png" srcset="http://i.blogs.es/30332a/asdf/450_1000.png 450w, http://i.blogs.es/30332a/asdf/650_1200.png 650w" alt="Confirmado: Twitter excluirá imágenes y nombres de usuario de su límite de 140 caracteres">
+       </a>
+ </div>
+ <div class="article-content m-in-home">
+    <div class="home-blob">
+         <div class="article-asset-image article-asset-normal"></div>
+
+         <p>Hace poco más de una semana y a través de Bloomberg, llegó a nuestros oídos un <a href="http://www.genbeta.com/redes-sociales-y-comunidades/twitter-dejara-de-incluir-las-fotos-y-los-enlaces-en-su-limite-de-140-caracteres">rumor</a> que llamó nuestra atención: que Twitter estaba planeando dejar de contar los enlaces e imágenes en el límite de caracteres de cada tuit, una inclusión que reduce la cantidad de texto que podemos incluir en un mensaje de este servicio y que supone ciertas <strong>incomodidades</strong>.</p>
+
+         <p>Una propuesta que, en definitiva, ampliaría las posibilidades de la plataforma de microblogging pero que la entidad nunca se encargó de confirmar. Sin embargo ha sido hoy mismo cuando lo ha hecho. Sí, porque la comunidad virtual <a href="https://blog.twitter.com/express-even-more-in-140-characters">acaba de darle alas</a> a sus 140 caracteres par que puedas utilizarlos por <strong>completo</strong>.</p>
+
+   </div>
+</div>
+<div class="article-links">
+    <div class="article-read-more "><a href="http://www.genbeta.com/redes-sociales-y-comunidades/confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres">Leer más &raquo;</a></div>
+    <div class="article-social-share m-in-home">
+     <p>Compartir</p>
+     <ul>
+          <li><a href="http://www.facebook.com/dialog/feed?app_id=360028941603&redirect_uri=http%3A%2F%2Fwww.genbeta.com%2F&link=http://www.genbeta.com/redes-sociales-y-comunidades/confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres" class="btn-facebook js-btn-facebook" data-postname="confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres">Facebook</a></li>
+          <li><a href="https://twitter.com/intent/tweet?url=http://www.genbeta.com/p/205138&text=Confirmado%3A%20Twitter%20excluir%C3%A1%20im%C3%A1genes%20y%20nombres%20de%20usuario%20de%20su%20l%C3%ADmite%20de%20140%20caracteres&via=genbeta" class="btn-twitter js-btn-twitter" data-postname="confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres">Twitter</a></li>
+          <li><a href="mailto:?subject=Confirmado: Twitter excluirá imágenes y nombres de usuario de su límite de 140 caracteres&body=http://www.genbeta.com/redes-sociales-y-comunidades/confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres?utm_source=sharebutton&amp;utm_medium=email&amp;utm_content=POST&amp;utm_campaign=24_May_2016%26utm_term%3DCLICK%2BON%2BTITLE" class="btn-email js-btn-email" data-postname="confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres">E-mail</a></li>
+    </ul>
+</div>
+</div>
+</article>
+                                </div>
+                                <div class="col-lg-3">
+                                    <p>aqui tenemos 3 espacios</p>
+                                </div>
+                            </div>
+                        </section>
+
+
 
                         </div>
                     {% else %}
