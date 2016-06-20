@@ -25,46 +25,58 @@
                                 <div class="row">
                                     <div class="col-lg-9">
                                         {% for noticia in noticias %}
-                                            <p>aqui hay 9 espacios</p>
-                                            <div class="article-category">
-                                                <a href="#">{{ noticia.tag }}</a>
+                                            <div class="row" >
+                                                <div class="categoria-articulo">
+                                                    <span>
+                                                        <a href="#">{{ noticia.tag }}</a>
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <h2 class="article-home-header"><a href="#">{{ noticia.titulo }}</a></h2>
+                                            <div class="row noticia-general">
+                                            <div class="titulo-noticia">
+                                                <h2 class="text-justify noticia-detalles">
+                                                    <a href="{% url 'noticias:ver_noticia' noticia.id %}"> {{ noticia.titulo }}</a>
+                                                </h2>
+                                            </div>
+
                                             <div class="row">
-                                                <div class="col-lg-2">
-                                                    <a class="article-author-link" href="#" rel="author">{{ noticia.usuario }}</a>
+                                                <div class="col-lg-2 noticia-detalles">
+                                                    <a href="#" rel="author"><b>{{ noticia.usuario }}</b></a>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <time title="2016-05-24T14:54:52Z" datetime="1464101692">{{ noticia.fecha_publicacion }}</time>
                                                 </div>
                                             </div>
-                                            {% for imagen in noticia.imagenes.all %}
-                                                <img src="{{ imagen.imagen.url }}" class="img-responsive">
-                                            {% endfor %}
-                                            <div class="article-content m-in-home">
-                                                <div class="home-blob">
-                                                    <div class="article-asset-image article-asset-normal"></div>
-                                                    <p class="text-justify">{{ noticia.entrada }}</p>
-                                                    <p class="text-justify">{{ noticia.cuerpo }}</p>
+                                            <div class="text-center img-box">
+                                                {% for imagen in noticia.imagenes.all %}
+                                                    <img src="{{ imagen.imagen.url }}" class="img-responsive imagen-noticia">
+                                                {% endfor %}
+                                            </div>
+                                            <div >
+                                                <div >
+                                                    <div ></div>
+                                                    <p class="text-justify noticia-detalles">{{ noticia.entrada }}</p>
+                                                    <p class="text-justify noticia-detalles">{{ noticia.cuerpo }}</p>
                                                 </div>
                                             </div>
 
 
 
                                             <div class="row">
-                                                <div class="col-lg-8">
+                                                <div class="col-lg-7 noticia-detalles">
                                                     <p>Compartir</p>
-                                                    <ul class="inline-group">
+                                                    <ul>
                                                         <li><a href="http://www.facebook.com/dialog/feed?app_id=360028941603&redirect_uri=http%3A%2F%2Fwww.genbeta.com%2F&link=http://www.genbeta.com/redes-sociales-y-comunidades/confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres" class="btn-facebook js-btn-facebook" data-postname="confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres">Facebook</a></li>
                                                         <li><a href="https://twitter.com/intent/tweet?url=http://www.genbeta.com/p/205138&text=Confirmado%3A%20Twitter%20excluir%C3%A1%20im%C3%A1genes%20y%20nombres%20de%20usuario%20de%20su%20l%C3%ADmite%20de%20140%20caracteres&via=genbeta" class="btn-twitter js-btn-twitter" data-postname="confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres">Twitter</a></li>
                                                         <li><a href="mailto:?subject=Confirmado: Twitter excluirá imágenes y nombres de usuario de su límite de 140 caracteres&body=http://www.genbeta.com/redes-sociales-y-comunidades/confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres?utm_source=sharebutton&amp;utm_medium=email&amp;utm_content=POST&amp;utm_campaign=24_May_2016%26utm_term%3DCLICK%2BON%2BTITLE" class="btn-email js-btn-email" data-postname="confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres">E-mail</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <a href="http://www.genbeta.com/redes-sociales-y-comunidades/confirmado-twitter-excluira-imagenes-y-nombres-de-usuario-de-su-limite-de-140-caracteres">Leer más &raquo;</a>
+                                                    <a href="{% url 'noticias:ver_noticia' noticia.id %}">Leer más &raquo;</a>
                                                 </div>
 
                                                 <a class="btn btn-success" role="button" href="{% url 'noticias:editar_noticia' noticia.id %}">Editar</a> <a class="btn btn-danger" role="button" href="{% url 'noticias:eliminar_noticia' noticia.id %}">Eliminar</a>
+                                            </div>
                                             </div>
                                         {% endfor %}
 
