@@ -15,7 +15,6 @@
 
 <body>
 
-
 <!-- Fixed navbar -->
 <nav id="header" class="navbar navbar-fixed-top">
     <div id="header-container" class="container navbar-container">
@@ -32,21 +31,23 @@
             <ul class="nav navbar-nav">
                 {#            {% if user.is_authenticated %}#}
                 <li class="active"><a href="{% url 'noticias:ver_noticias' %}"> Noticias <span class="sr-only">(current)</span></a></li>
-                <li role="presentation"><a href="{% url 'noticias:ver_tags' %}"> Tags </a></li>
+                <li><a href=""> Tags fuera</a></li>
                 <li><a href="{% url 'noticias:ver_imagenes' %}"> Imagenes </a></li>
-                <li><a href="#"> Proyectos </a></li>
-                <li><a href="#"> Productos  </a></li>
+                <li><a href="#"> Paginas Amigas </a></li>
+                <li><a href="#"> Curriculum  </a></li>
                 <!--<li><a href="#"> Maquinaria </a></li>-->
                 <!--<li><a href="#"> Alquiler de maquinaria</a></li>
                 <li><a href="#"> Paginas Amigas</a></li>
                 <li><a href="#"> Quienes somos </a></li>-->
-                <li><a href="#"> Contactanos </a></li>
+                <li><a href="#"> Videos </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                     <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Opciones <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            {% if user.is_staff %}
                             <li><a href="#">Cambiar Contraseña</a></li>
+                                {% endif %}
                             <li><a href="#">Mi Perfil</a></li>
                         </ul>
 
@@ -60,7 +61,96 @@
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 
-<div class="container" style="padding-top: 70px;">
+{% if user.is_staff %}
+
+
+
+    <div class="container" style="padding-top: 70px;">
+     {% if messages %}
+        {% for message in messages %}
+            <div class="alert alertes alert-{{ message.tags }} " role="alert">{{message}}</div>
+        {% endfor %}
+    {% endif %}
+    <div class="panel panel-primary">
+            <div class="panel-heading text-center">PANEL DE ADMINISTRACION</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-2">
+                          <ul class="nav nav-pills nav-stacked">
+                              <li class="active"><a href="#">Menu</a></li>
+                              <li><a href="{% url 'noticias:ver_noticias' %}">Noticias</a></li>
+                              <li class="disabled"><a href="#">Disabled</a></li>
+                              <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                  Dropdown <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                  <li><a href="#">Action</a></li>
+                                  <li><a href="#">Another action</a></li>
+                                  <li><a href="#">Something else here</a></li>
+                                  <li class="divider"></li>
+                                  <li><a href="#">Separated link</a></li>
+                                </ul>
+                              </li>
+                              <li><a href="#">Action 2</a></li>
+                              <li><a href="#">Action 3</a></li>
+                              <li><a href="#">Action 4</a></li>
+                              <li><a href="#">Action 5</a></li>
+                              <li><a href="#">Action 6</a></li>
+                              <li><a href="#">Action 7</a></li>
+                              <li><a href="#">Action 8</a></li>
+                              <li><a href="#">Action 9</a></li>
+                              <li><a href="#">Action 10</a></li>
+                              <li><a href="#">Action 11</a></li>
+                              <li><a href="#">Action 12</a></li>
+                         </ul>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                  <div class="panel panel-primary">
+                                      <div class="panel-heading">Graph 1</div>
+                                      <div class="panel-body">
+                                        <div id="chart1" class="c3" style="max-height: 320px; position: relative;"><div class="c3-tooltip-container" style="position: absolute; pointer-events: none; display: none; top: 65.5px; left: 64.5px;"><table class="c3-tooltip"><tbody><tr><th colspan="2">0</th></tr><tr class="c3-tooltip-name-data1"><td class="name"><span style="background-color:#1f77b4"></span>data1</td><td class="value">90</td></tr><tr class="c3-tooltip-name-data2"><td class="name"><span style="background-color:#ff7f0e"></span>data2</td><td class="value">120</td></tr><tr class="c3-tooltip-name-data3"><td class="name"><span style="background-color:#2ca02c"></span>data3</td><td class="value">300</td></tr></tbody></table></div></div>
+                                      </div>
+                                  </div>
+                            </div>
+                            <div class="col-lg-6">
+                                  <div class="panel panel-primary">
+                                      <div class="panel-heading">Graph 2</div>
+                                      <div class="panel-body">
+                                        <div id="chart2" class="c3" style="max-height: 320px; position: relative;"><div class="c3-tooltip-container" style="position: absolute; pointer-events: none; display: none;"></div></div>
+                                      </div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                  <div class="panel panel-primary">
+                                      <div class="panel-heading">Graph 3</div>
+                                      <div class="panel-body">
+                                        <div id="chart3" class="c3" style="max-height: 320px; position: relative;"><div class="c3-tooltip-container" style="position: absolute; pointer-events: none; display: none; top: 131.5px; left: 69.5px;"><table class="c3-tooltip"><tbody><tr><th colspan="2">0</th></tr><tr class="c3-tooltip-name-data1"><td class="name"><span style="background-color:#1f77b4"></span>data1</td><td class="value">300</td></tr><tr class="c3-tooltip-name-data2"><td class="name"><span style="background-color:#ff7f0e"></span>data2</td><td class="value">130</td></tr></tbody></table></div></div>
+                                      </div>
+                                  </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
+
+{% else %}
+
+
+
+
+    <div class="container" style="padding-top: 70px;">
     {% if messages %}
         {% for message in messages %}
             <div class="alert alertes alert-{{ message.tags }} " role="alert">{{message}}</div>
@@ -78,6 +168,11 @@
         {%endblock%}
     </div>
 </div>
+
+
+
+{% endif %}
+
 <script src="{% static 'js/jquery-1.11.3.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/funciones.js' %}"></script>
